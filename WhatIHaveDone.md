@@ -89,4 +89,6 @@ The encoder are still not very friendly. These are absolut magnetic SPI.
 It's now working but there is a lot of wigle room so eventhoug the motor moves the outside parts doesn't. So I unmounted the motor and tied the srews
 
 # Day 8 09/07
-It's working see *Working_Motor_Performance_Analysis_14.xlsx*
+It's working see *Working_Motor_Performance_Analysis_14.xlsx*.
+
+I am now sending the motors info to ros.

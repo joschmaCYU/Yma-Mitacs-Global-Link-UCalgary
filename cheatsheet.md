@@ -19,3 +19,14 @@ roslaunch mitacs mitacs_ouster.launch sensor_hostname:=169.254.X.X
 
 # Copy
 docker cp ros_ouster:./real_lidar_50hz.csv ~
+
+# Find
+find . -iname "*name*"
+
+# Ros
+## Arduino
+### To generate the msg libraries
+rosrun rosserial_arduino make_libraries.py /tmp
+### Make arduino + ros work
+roscore
+rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=115200
