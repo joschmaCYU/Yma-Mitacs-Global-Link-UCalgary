@@ -2,6 +2,7 @@ I am working on a quadruped that will do search and rescue missions.
 
 What I need to do for now : setup lidar, then publish a grid to the /lidar topic (PointCloud or Float32MutliArray) the grid can change in function of the policy.
 # Day 1
+I familarised my self with all the pdfs they gave me.
 Meet Dr. Alex and all the other student. Get an idea what I shout do: setup the lidar, connect it to /lidar in ros and then use the "neck" to map the environement in 3d.
 Connected the lidar (ouster OS0 64) with ethernet cable to pc.
 
@@ -71,3 +72,21 @@ At alpha 0.20 we get 0.2s to react to 90% of obstacle and 0.08s as mean reaction
 
 # Day 4 (03/07)
 Beggining to use the nucleo board. I have made the motor move now I want to control them and send the messages to ros.
+
+# Day 5 (06/07)
+Getting the nucleo to work with the old code. I found it I had to flash it back but now the angles wont begging computed correctly. To make the stm board work you need to unplug the encoder so they would initialise at the wring values.
+There is a problem with the code idk what but see "*Motor_Performance_Analysis*" graphs but they don't make any sens to me.
+
+# Day 6 (07/07)
+Trying to get the neck to work. I tryied the default version with putty but it doesn't work. I don't get why it doesn't listen to the serial.
+I undestand it's the motor driver that is faulty. The second output ins't working.
+
+# Day 7 (08/07)
+It's not the motor dirver fault. I tryied a simple move back and forward script and everything was working great.
+I am reimplmenting everything on arduino IDE and it's working. 
+The encoder are still not very friendly. These are absolut magnetic SPI.
+
+It's now working but there is a lot of wigle room so eventhoug the motor moves the outside parts doesn't. So I unmounted the motor and tied the srews
+
+# Day 8 09/07
+It's working see *Working_Motor_Performance_Analysis_14.xlsx*
