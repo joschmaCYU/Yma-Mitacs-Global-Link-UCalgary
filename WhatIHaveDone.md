@@ -91,4 +91,27 @@ It's now working but there is a lot of wigle room so eventhoug the motor moves t
 # Day 8 09/07
 It's working see *Working_Motor_Performance_Analysis_14.xlsx*.
 
-I am now sending the motors info to ros.
+I am now sending the motors info to ros. 
+I had to **change some pins** because I had to find output with some clock (SCK).
+I moved 
+
+# Day 9 10/07
+Today I need to combine the lidar and Orbita.
+Updating ouster lidar firmware from v2.5.2 to v2.5.3
+But I had to downgrade in my dockerfile the ouster-ros.
+It works from my pc with ros to the nucleo that makes the lidar neck move.
+
+I need to somehow make the lidar fit the simulation but the problem is that the lidar of the sim comes from above the robot and the real lidar is at the front of the robot. 
+So I have multiple choises :
+1) I map the env with slam and give the map in real time to the rl. So I have to send the zone around the robot as a grid.
+2) Move the head to map a max of the env and assume that the rest is flat.
+
+The problem is that the lidar is at the front. It can't perfectly see everything around it so it can't produce the real grid for the rl policy. I will map the env so that the robot can use it eventhoug it can't actively see it.
+Question for Stefan:
+1) How can I simulate the robot in a rougth env and add a lidar on it (urdf?)
+    i) How to make the robot turn on it self/go somewhere
+2) I will assume that every point I did not see is flat
+3) Move the neck a maximum to get more info at the start
+
+# Day 10 (13/07)
+Today I am putting the quadruped into simulation. I updated the urdf to add the lidar. Then I will use [grid_map](https://github.com/ANYbotics/grid_map) to construct a height map of the environement.

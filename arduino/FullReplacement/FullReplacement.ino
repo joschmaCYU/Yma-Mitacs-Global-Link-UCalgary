@@ -179,7 +179,7 @@ void setMotor(int motorNumber, int speed) {
 }
 
 // ==========================================
-// CALLBACK CIBLES ROS
+// CALLBACK ROS
 // ==========================================
 void targetCb(const geometry_msgs::Vector3& msg) {
     // msg.x = Yaw, msg.y = Pitch, msg.z = Roll
@@ -230,7 +230,7 @@ void setup() {
     
     calibrationMot = true;
 
-    // ROS INIT (STRICTEMENT AUCUN SERIAL)
+    // ROS INIT
     nh.getHardware()->setBaud(115200);
     nh.initNode();
     nh.advertise(pub_motor);
@@ -291,6 +291,5 @@ void loop() {
         pub_motor.publish(&msg_mot);
     }
     
-    // Indispensable pour traiter les réceptions et l'état de la connexion
     nh.spinOnce();
 }

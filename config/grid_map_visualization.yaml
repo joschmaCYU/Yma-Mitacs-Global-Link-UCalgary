@@ -1,0 +1,11 @@
+# Le topic généré par elevation_mapping
+grid_map_topic: /elevation_mapping/elevation_map
+
+# Paramètres d'affichage pour RViz
+grid_map_visualizations:
+  - name: elevation_points
+    type: point_cloud
+    params:
+      layer: elevation
+      point_size: 0.04
+      # Tu pourras ajouter des couleurs dynamiques plus tard si besoin
