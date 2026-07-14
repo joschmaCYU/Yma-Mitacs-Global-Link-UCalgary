@@ -19,5 +19,6 @@
   <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
     <rosparam command="load" file="$(find mitacs)/config/grid_map_visualization.yaml" />
   </node>
-    <node name="rviz" pkg="rviz" type="rviz" output="screen" />
+  <node name="rviz" pkg="rviz" type="rviz" output="screen" />
+  <node name="rl_grid_extractor" pkg="mitacs" type="rl_grid_extractor.py" output="screen" />
 </launch>

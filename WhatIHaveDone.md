@@ -114,4 +114,4 @@ Question for Stefan:
 3) Move the neck a maximum to get more info at the start
 
 # Day 10 (13/07)
-Today I am putting the quadruped into simulation. I updated the urdf to add the lidar. Then I will use [grid_map](https://github.com/ANYbotics/grid_map) to construct a height map of the environement.
+Today I am putting the quadruped into simulation. I updated the urdf to add the lidar. Then I will use [grid_map](https://github.com/ANYbotics/grid_map) to construct a height map of the environement. For now I spawn the robot urdf and I publish my grid map on `/elevation_mapping/elevation_map`. I can now see elevation points on rviz. I publish the grid on `/lidar`.
