@@ -1,1 +1,0 @@
-# Yma-Mitacs-Global-Link-UCalgary

@@ -7,7 +7,7 @@
 
   <param name="robot_description" textfile="$(find mitacs)/ContinuO_URDF/urdf/ContinuO_lidar.urdf" />
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
-        args="-param robot_description -urdf -model ContinuO -z 0.5" output="screen" />
+        args="-param robot_description -urdf -model ContinuO -z 0.52" output="screen" />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
   <node name="odom_to_tf" pkg="mitacs" type="odom_to_tf.py" output="screen" />
