@@ -133,3 +133,12 @@ Trying to setup Luis simulation to see what he did. The commands are :
 roslaunch quadruped_gazebo spawn_control.launch
 roslaunch quadruped_control bringup_rl.launch`
 I copied Luis files and you can launch the luis config with lidar with `roslaunch mitacs luis_bringup.launch`
+I took his code and added the mapping part over it so that the robot creates an elevation map.
+
+The pipe line for the simulated lidar is :
+1) URDF : <sensor type="ray" name="ouster_sensor"> combined with <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_velodyne_laser.so"> which is published on `/ouster/points`
+2) You need to create the TF tree which is done with odom_to_tf.py and robot_state_publisher publishes to the `world` TF
+3) With the /ouster/points you can calculate the world position of each point
+4) Creation of the 2.5d grid which is published on /elevation_mapping/elevation_map
+
+If you want the points to go farther you have to modify `length_in_x` in elevation_mapping.yaml
