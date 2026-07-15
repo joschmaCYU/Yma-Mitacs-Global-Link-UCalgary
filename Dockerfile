@@ -18,6 +18,9 @@ RUN apt-get update && apt-get install -y \
     ros-noetic-tf2-ros \
     ros-noetic-tf2-geometry-msgs \
     ros-noetic-grid-map \
+    ros-noetic-joy \
+    ros-noetic-joint-state-controller \
+    ros-noetic-effort-controllers \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. Installation des librairies Python requises

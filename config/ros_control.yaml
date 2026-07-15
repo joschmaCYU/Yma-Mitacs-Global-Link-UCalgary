@@ -1,0 +1,81 @@
+# ================== PID profiles (front legs stiffer) ==================
+FRONT_PID: &FRONT_PID
+  p: 240.0
+  i: 6.0       
+  d: 4.5
+  i_clamp: 4.0
+
+REAR_PID: &REAR_PID
+  p: 210.0
+  i: 6.0
+  d: 4.0
+  i_clamp: 4.0
+
+# 1. Le contrôleur qui lit la position actuelle des moteurs
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 100
+
+# =========== Front Left Leg (FL) ===========
+FL_HAA_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FL_HAA
+  pid: *FRONT_PID
+FL_HFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FL_HFE
+  pid: *FRONT_PID
+FL_KFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FL_KFE
+  pid: *FRONT_PID
+
+# =========== Front Right Leg (FR) ===========
+FR_HAA_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FR_HAA
+  pid: *FRONT_PID
+FR_HFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FR_HFE
+  pid: *FRONT_PID
+FR_KFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FR_KFE
+  pid: *FRONT_PID
+
+# =========== Hind Left Leg (HL) ===========
+HL_HAA_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HL_HAA
+  pid: *REAR_PID
+HL_AFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HL_AFE
+  pid: *REAR_PID
+HL_HFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HL_HFE
+  pid: *REAR_PID
+HL_KFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HL_KFE
+  pid: *REAR_PID
+
+# =========== Hind Right Leg (HR) ===========
+HR_HAA_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HR_HAA
+  pid: *REAR_PID
+HR_AFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HR_AFE
+  pid: *REAR_PID
+HR_HFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HR_HFE
+  pid: *REAR_PID
+HR_KFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HR_KFE
+  pid: *REAR_PID

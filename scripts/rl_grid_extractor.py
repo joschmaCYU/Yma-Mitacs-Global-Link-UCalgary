@@ -49,9 +49,17 @@ class GridExtractor:
                 start_y : start_y + self.target_cols,
             ]
 
+            # Aligner les orientations des axes avec Isaac Lab:
+            # - X: inverser pour aller de l'arrière vers l'avant (ascendant) au lieu de l'avant vers l'arrière
+            # - Y: inverser pour aller de la droite vers la gauche (ascendant) au lieu de la gauche vers la droite
+            sub_grid = np.flip(sub_grid, axis=(0, 1))
+
+            # Transposer en (11, 17) pour que l'axe Y soit la boucle externe et X la boucle interne lors de l'aplatissement
+            sub_grid_t = sub_grid.T
+
             # 7. Aplatir (Row-Major 'C' par défaut) et publier
             out_msg = Float32MultiArray()
-            out_msg.data = sub_grid.flatten(order="C").tolist()
+            out_msg.data = sub_grid_t.flatten(order="C").tolist()
             self.pub.publish(out_msg)
 
         except ValueError:

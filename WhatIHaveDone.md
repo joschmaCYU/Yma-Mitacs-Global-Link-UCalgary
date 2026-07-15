@@ -10,6 +10,7 @@ Connected the lidar (ouster OS0 64) with ethernet cable to pc.
 Setup Docker and ros noetic to work (display issues)
 Did not update the lidar firmware just used an old version of https://github.com/ouster-lidar/ouster-ros.git
 Can see the lidar in gz (see video 30/06/2026)
+Launch with `mitacs_ouster.launch`
 
 # Day 3
 I have made the lidar publish a grid of 1.6 x 1m with (rows x cols) 17 x 11 points with a resolution of 0.1. (see video 02/07/2026). I can update if the policy is croutch (it adds a point on the back so that it can see the ceiling). It needs to see in front (from 0 to 1.6m). So that it ignores left, right and his back. I need to becarfull that the the points that it gets are always perfectly parrallel points to the ground (because the RL is trained so).
@@ -114,4 +115,21 @@ Question for Stefan:
 3) Move the neck a maximum to get more info at the start
 
 # Day 10 (13/07)
-Today I am putting the quadruped into simulation. I updated the urdf to add the lidar. Then I will use [grid_map](https://github.com/ANYbotics/grid_map) to construct a height map of the environement. For now I spawn the robot urdf and I publish my grid map on `/elevation_mapping/elevation_map`. I can now see elevation points on rviz. I publish the grid on `/lidar`.
+Today I am putting the quadruped into simulation. I updated the urdf to add the lidar. Then I will use [grid_map](https://github.com/ANYbotics/grid_map) to construct a height map of the environement. 
+Launch with `elevation_mapping.launch`
+
+# Day 11 (14/07)
+For now I spawn the robot urdf and I publish my grid map on `/elevation_mapping/elevation_map`. I can now see elevation points on rviz. I publish the grid on `/lidar`.
+1) I had to adjust the p (50) and d (1) gains.
+2) The order for the rl is `['FL_HAA', 'FR_HAA', 'HL_HAA', 'HR_HAA', 'FL_HFE', 'FR_HFE', 'HL_HFE', 'HR_HFE', 'FL_KFE', 'FR_KFE', 'HL_KFE', 'HR_KFE', 'HL_AFE', 'HR_AFE']`
+3) The joint position actions scale is 0.5
+4) The default joint angle are : HAA (0°), HFE (front = -90°, back = 90°), KFE (front = 180°, back = -180°), AFE / EXTRA (180°)
+
+Test with just the flat policy.
+
+# Day 12 (15/07)
+Trying to setup Luis simulation to see what he did. The commands are : 
+1.  roslaunch quadruped_gazebo gazebo.launch
+2.  roslaunch quadruped_gazebo spawn_control.launch
+3.  roslaunch quadruped_control bringup_rl.launch
+
