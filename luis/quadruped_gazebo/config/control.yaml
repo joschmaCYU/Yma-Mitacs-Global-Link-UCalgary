@@ -1,0 +1,109 @@
+# ================== joint_state_controller ==================
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 100
+
+# ================== PID profiles (front legs stiffer) ==================
+FRONT_PID: &FRONT_PID
+  p: 240.0
+  i: 6.0       
+  d: 4.5
+  i_clamp: 4.0
+
+REAR_PID: &REAR_PID
+  p: 210.0
+  i: 6.0
+  d: 4.0
+  i_clamp: 4.0
+
+# ===========================================================
+
+# ===========================================================
+
+# =========== Front Left Leg (FL) ===========
+FL_HAA_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FL_HAA
+  pid: *FRONT_PID
+  command: 0.0
+
+FL_HFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FL_HFE
+  pid: *FRONT_PID
+  command: 0.46     
+
+FL_KFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FL_KFE
+  pid: *FRONT_PID
+  command: -0.92    
+
+# =========== Front Right Leg (FR) ===========
+FR_HAA_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FR_HAA
+  pid: *FRONT_PID
+  command: 0.0
+
+FR_HFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FR_HFE
+  pid: *FRONT_PID
+  command: 0.46
+
+FR_KFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: FR_KFE
+  pid: *FRONT_PID
+  command: -0.92
+
+# =========== Hind Left Leg (HL) ===========
+HL_HAA_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HL_HAA
+  pid: *REAR_PID
+  command: 0.0
+
+HL_HFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HL_HFE
+  pid: *REAR_PID
+  command: -0.18    
+
+HL_KFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HL_KFE
+  pid: *REAR_PID
+  command: 0.66     
+
+HL_AFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HL_AFE
+  pid: *REAR_PID
+  command: -0.60    
+
+# =========== Hind Right Leg (HR) ===========
+HR_HAA_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HR_HAA
+  pid: *REAR_PID
+  command: 0.0
+
+HR_HFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HR_HFE
+  pid: *REAR_PID
+  command: -0.18
+
+HR_KFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HR_KFE
+  pid: *REAR_PID
+  command: 0.66
+
+HR_AFE_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: HR_AFE
+  pid: *REAR_PID
+  command: -0.60

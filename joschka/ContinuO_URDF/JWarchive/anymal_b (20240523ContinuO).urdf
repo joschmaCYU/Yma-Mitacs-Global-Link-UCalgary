@@ -1,0 +1,1068 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="anymal">
+  <link
+    name="base">
+    <inertial>
+      <origin
+        xyz="0.003108 0.000061 0.008445"
+        rpy="0 0 0" />
+      <mass
+        value="10.342" />
+      <inertia
+        ixx="131477391.556e-9"
+        ixy="-35656.795e-9"
+        ixz="257886.739e-9"
+        iyy="328587491.167e-9"
+        iyz="31766.975e-9"
+        izz="423802600.524e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/base.dae" />
+      </geometry>
+      <material
+        name="">
+        <!-- <color
+          rgba="0.79216 0.81961 0.93333 1" /> -->
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/base.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="FL_SHOULDER">
+    <inertial>
+      <origin
+        xyz="51.772e-3 21.258e-3 -0.161e-3"
+        rpy="0 0 0" />
+      <mass
+        value="1.276" />
+      <inertia
+        ixx="1862413.216e-9"
+        ixy="34307.720e-9"
+        ixz="1836.088e-9"
+        iyy="1745876.060e-9"
+        iyz="127.529e-9"
+        izz="1887209.589e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FL_SHOULDER.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FL_SHOULDER.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FL_HAA"
+    type="revolute">
+    <origin
+      xyz="0.2635 0.12291 0"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="FL_SHOULDER" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="FL_UPPER_LEG">
+    <inertial>
+      <origin
+        xyz="0.009e-3 25.634e-3 -165.001e-3"
+        rpy="0 0 0" />
+      <mass
+        value="1.367" />
+      <inertia
+        ixx="16273403.695e-9"
+        ixy="-161.140e-9"
+        ixz="12937.356e-9"
+        iyy="16691309.192e-9"
+        iyz="130585.208e-9"
+        izz="1167540.754e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FL_UPPER_LEG.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FL_UPPER_LEG.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FL_HFE"
+    type="revolute">
+    <origin
+      xyz="0.053259 0.061836 -0.0001687"
+      rpy="0 0 0" />
+    <parent
+      link="FL_SHOULDER" />
+    <child
+      link="FL_UPPER_LEG" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="FL_ELBOW">
+    <inertial>
+      <origin
+        xyz="-41.308e-3 34.919e-3 -47.598e-3"
+        rpy="0 0 0" />
+      <mass
+        value="0.759" />
+      <inertia
+        ixx="7966011.909e-9"
+        ixy=" -9387.703e-9"
+        ixz="1312983.562e-9"
+        iyy="9247408.954e-9"
+        iyz="-2373.514e-9"
+        izz="1638567.052e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FL_LOWER_LEG.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FL_LOWER_LEG.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FL_KFE"
+    type="revolute">
+    <origin
+      xyz="0 0.0465 -0.2465"
+      rpy="0 0 0" />
+    <parent
+      link="FL_UPPER_LEG" />
+    <child
+      link="FL_ELBOW" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="FL_FOOT">
+    <inertial>
+      <origin
+        xyz="35.896e-3 -0.081e-3 186.367e-3"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="7966011.909e-9"
+        ixy="-9387.703e-9"
+        ixz="1312983.562e-9"
+        iyy="9247408.954e-9"
+        iyz="-2373.514e-9"
+        izz="1638567.052e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FL_FOOT.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0267" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FL_ANKEL"
+    type="fixed">
+    <origin
+      xyz="-0.077204 0.035 -0.23396"
+      rpy="0 0 0" />
+    <parent
+      link="FL_ELBOW" />
+    <child
+      link="FL_FOOT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="FR_SHOULDER">
+    <inertial>
+      <origin
+        xyz="51.772e-3 -21.258e-3 -0.161e-3"
+        rpy="0 0 0" />
+      <mass
+        value="1.276" />
+      <inertia
+        ixx="1862413.216e-9"
+        ixy="-34307.720e-9"
+        ixz="1836.088e-9"
+        iyy="1745876.060e-9"
+        iyz="-127.529e-9"
+        izz="1887209.589e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FR_SHOULDER.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FR_SHOULDER.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FR_HAA"
+    type="revolute">
+    <origin
+      xyz="0.2635 -0.12291 0"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="FR_SHOULDER" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="FR_UPPER_LEG">
+    <inertial>
+      <origin
+        xyz="0.009e-3 -25.634e-3 -165.001e-3"
+        rpy="0 0 0" />
+      <mass
+        value="1.367" />
+      <inertia
+        ixx="16273403.695e-9"
+        ixy="161.140e-9"
+        ixz="12937.356e-9"
+        iyy="16691309.192e-9"
+        iyz="-130585.208e-9"
+        izz="1167540.754e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FR_UPPER_LEG.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FR_UPPER_LEG.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FR_HFE"
+    type="revolute">
+    <origin
+      xyz="0.053259 -0.061836 9.9925E-05"
+      rpy="0 0 0" />
+    <parent
+      link="FR_SHOULDER" />
+    <child
+      link="FR_UPPER_LEG" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="FR_ELBOW">
+    <inertial>
+      <origin
+        xyz="-41.308e-3 -34.919e-3 -47.598e-3"
+        rpy="0 0 0" />
+      <mass
+        value="0.759" />
+      <inertia
+        ixx="7966011.909e-9"
+        ixy=" 9387.703e-9"
+        ixz="1312983.562e-9"
+        iyy="9247408.954e-9"
+        iyz="2373.514e-9"
+        izz="1638567.052e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FR_LOWER_LEG.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FR_LOWER_LEG.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FR_KFE"
+    type="revolute">
+    <origin
+      xyz="0 -0.0465 -0.2465"
+      rpy="0 0 0" />
+    <parent
+      link="FR_UPPER_LEG" />
+    <child
+      link="FR_ELBOW" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="FR_FOOT">
+    <inertial>
+      <origin
+        xyz="35.896e-3 0.081e-3 186.367e-3"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="7966011.909e-9"
+        ixy="9387.703e-9"
+        ixz="1312983.562e-9"
+        iyy="9247408.954e-9"
+        iyz="2373.514e-9"
+        izz="1638567.052e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FR_FOOT.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <!-- <mesh filename="../meshes/FR_FOOT.dae" /> -->
+        <sphere radius="0.0267" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FR_ANKEL"
+    type="fixed">
+    <origin
+      xyz="-0.07715 -0.035 -0.23396"
+      rpy="0 0 0" />
+    <parent
+      link="FR_ELBOW" />
+    <child
+      link="FR_FOOT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="HL_SHOULDER">
+    <inertial>
+      <origin
+        xyz="-51.779e-3 21.258e-3 0.042e-3"
+        rpy="0 0 0" />
+      <mass
+        value="1.276" />
+      <inertia
+        ixx="1862438.249e-9"
+        ixy="-34011.999e-9"
+        ixz="-510.439e-9"
+        iyy="1745191.990e-9"
+        iyz="-556.317e-9"
+        izz="1886523.749e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_SHOULDER.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_SHOULDER.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HL_HAA"
+    type="revolute">
+    <origin
+      xyz="-0.2635 0.12291 0"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="HL_SHOULDER" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="HL_EXTRA_LEG">
+    <inertial>
+      <origin
+        xyz="0.003e-3 25.470e-3 -134.787e-3"
+        rpy="0 0 0" />
+      <mass
+        value="1.315" />
+      <inertia
+        ixx="11053712.614e-9"
+        ixy="-166.896e-9"
+        ixz="13255.147e-9"
+        iyy="11463665.170e-9"
+        iyz="105489.550e-9"
+        izz="1146965.026e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_EXTRA_LEG.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_EXTRA_LEG.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HL_EXTRA"
+    type="revolute">
+    <origin
+      xyz="-0.053259 0.061836 9.9925E-05"
+      rpy="0 0 0" />
+    <parent
+      link="HL_SHOULDER" />
+    <child
+      link="HL_EXTRA_LEG" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="HL_UPPER_LEG">
+    <inertial>
+      <origin
+        xyz=" 0.005e-3 41.724e-3 -160.773e-3"
+        rpy="0 0 0" />
+      <mass
+        value="1.406" />
+      <inertia
+        ixx="17322697.149e-9"
+        ixy="-166.299e-9"
+        ixz="13745.847e-9"
+        iyy="17702007.589e-9"
+        iyz=" -74976.358e-9"
+        izz="1218582.595e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_UPPER_LEG.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_UPPER_LEG.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HL_HFE"
+    type="revolute">
+    <origin
+      xyz="0 0.0465 -0.201"
+      rpy="0 0 0" />
+    <parent
+      link="HL_EXTRA_LEG" />
+    <child
+      link="HL_UPPER_LEG" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="HL_HEEL">
+    <inertial>
+      <origin
+        xyz="-40.122e-3 34.916e-3 -27.409e-3"
+        rpy="0 0 0" />
+      <mass
+        value="0.734" />
+      <inertia
+        ixx="3597127.046e-9"
+        ixy="-9314.367e-9"
+        ixz="762796.820e-9"
+        iyy="4846202.923e-9"
+        iyz="-1133.290e-9"
+        izz="1602960.774e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_LOWER_LEG.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_LOWER_LEG.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HL_KFE"
+    type="revolute">
+    <origin
+      xyz="0 0.0635 -0.2465"
+      rpy="0 0 0" />
+    <parent
+      link="HL_UPPER_LEG" />
+    <child
+      link="HL_HEEL" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="HL_FOOT">
+    <inertial>
+      <origin
+        xyz="37.082e-3 -0.084e-3 116.555e-3"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="3597127.046e-9"
+        ixy="-9314.367e-9"
+        ixz="762796.820e-9"
+        iyy="4846202.923e-9"
+        iyz="-1133.290e-9"
+        izz="1602960.774e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_FOOT.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0267" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HL_ANKEL"
+    type="fixed">
+    <origin
+      xyz="-0.077204 0.035 -0.14396"
+      rpy="0 0 0" />
+    <parent
+      link="HL_HEEL" />
+    <child
+      link="HL_FOOT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="HR_SHOULDER">
+    <inertial>
+      <origin
+        xyz="-51.779e-3 -21.258e-3 0.042e-3"
+        rpy="0 0 0" />
+      <mass
+        value="1.276" />
+      <inertia
+        ixx="1862438.249e-9"
+        ixy="34011.999e-9"
+        ixz="-510.439e-9"
+        iyy="1745191.990e-9"
+        iyz="556.317e-9"
+        izz="1886523.749e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_SHOULDER.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_SHOULDER.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HR_HAA"
+    type="revolute">
+    <origin
+      xyz="-0.2635 -0.12291 0"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="HR_SHOULDER" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="HR_EXTRA_LEG">
+    <inertial>
+      <origin
+        xyz="0.003e-3 -25.470e-3 -134.787e-3"
+        rpy="0 0 0" />
+      <mass
+        value="1.315" />
+      <inertia
+        ixx="11053712.614e-9"
+        ixy="166.896e-9"
+        ixz="13255.147e-9"
+        iyy="11463665.170e-9"
+        iyz="-105489.550e-9"
+        izz="1146965.026e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_EXTRA_LEG.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_EXTRA_LEG.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HR_EXTRA"
+    type="revolute">
+    <origin
+      xyz="-0.053259 -0.061836 -0.0001687"
+      rpy="0 0 0" />
+    <parent
+      link="HR_SHOULDER" />
+    <child
+      link="HR_EXTRA_LEG" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="HR_UPPER_LEG">
+    <inertial>
+      <origin
+        xyz="-40.122e-3 -34.916e-3 -27.409e-3"
+        rpy="0 0 0" />
+      <mass
+        value="0.734" />
+      <inertia
+        ixx="3597127.046e-9"
+        ixy="9314.367e-9"
+        ixz="762796.820e-9"
+        iyy="4846202.923e-9"
+        iyz="1133.290e-9"
+        izz="1602960.774e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_UPPER_LEG.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_UPPER_LEG.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HR_HFE"
+    type="revolute">
+    <origin
+      xyz="0 -0.0465 -0.201"
+      rpy="0 0 0" />
+    <parent
+      link="HR_EXTRA_LEG" />
+    <child
+      link="HR_UPPER_LEG" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="HR_HEEL">
+    <inertial>
+      <origin
+        xyz="-40.122e-3 -34.916e-3 -27.409e-3"
+        rpy="0 0 0" />
+      <mass
+        value="0.734" />
+      <inertia
+        ixx="3597127.046e-9"
+        ixy="9314.367e-9"
+        ixz="762796.820e-9"
+        iyy="4846202.923e-9"
+        iyz="1133.290e-9"
+        izz="1602960.774e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_LOWER_LEG.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_LOWER_LEG.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HR_KFE"
+    type="revolute">
+    <origin
+      xyz="0 -0.0635 -0.2465"
+      rpy="0 0 0" />
+    <parent
+      link="HR_UPPER_LEG" />
+    <child
+      link="HR_HEEL" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="30"
+      velocity="20" />
+  </joint>
+  <link
+    name="HR_FOOT">
+    <inertial>
+      <origin
+        xyz="37.082e-3 0.084e-3 116.555e-3"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="3597127.046e-9"
+        ixy="9314.367e-9"
+        ixz="762796.820e-9"
+        iyy="4846202.923e-9"
+        iyz="1133.290e-9"
+        izz="1602960.774e-9" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_FOOT.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0267" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HR_ANKEL"
+    type="fixed">
+    <origin
+      xyz="-0.077203 -0.035 -0.14396"
+      rpy="0 0 0" />
+    <parent
+      link="HR_HEEL" />
+    <child
+      link="HR_FOOT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

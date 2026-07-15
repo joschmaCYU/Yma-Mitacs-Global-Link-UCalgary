@@ -1,0 +1,193 @@
+policy_profiles:
+
+  # 
+  #  (56 features)
+  # 
+  policy_onnx_flat_v1:
+    model_format: onnx
+    model_path: policies/policy.onnx
+    ort_input_name: obs
+
+    # 56 floats: 3+3+3+2+2+14+14+14+1
+    obs_fields:
+      - base_lin_vel
+      - base_ang_vel
+      - gravity
+      - pose_xy
+      - zeros2
+      - q14
+      - dq14
+      - last_actions14
+      - time_remaining
+
+    
+    obs_auto_pad: true          
+    obs_allow_truncate: false   
+
+    limits:
+      x_max_m: 0.5
+      y_max_m: 0.5
+
+    action_order_model:
+      - FL_HAA
+      - FR_HAA
+      - HL_HAA
+      - HR_HAA
+      - FL_HFE
+      - FR_HFE
+      - HL_HFE
+      - HR_HFE
+      - FL_KFE
+      - FR_KFE
+      - HL_KFE
+      - HR_KFE
+      - HL_AFE
+      - HR_AFE
+
+    action_mode: delta
+    base_for_delta: model_q0
+
+    model_q0:
+      FL_HAA: 0.0
+      FR_HAA: 0.0
+      HL_HAA: 0.0
+      HR_HAA: 0.0
+      FL_HFE: 0.4102
+      FR_HFE: 0.4102
+      HL_HFE: -0.6981
+      HR_HFE: -0.6981
+      FL_KFE: -1.2716
+      FR_KFE: -1.2716
+      HL_KFE: 1.676
+      HR_KFE: 1.676
+      HL_AFE: -1.7219
+      HR_AFE: -1.7219
+
+  # ============================================
+
+  # ============================================
+  flat_noise_test_v1:
+    model_format: onnx
+    model_path: policies/flat_noise_test_policy.onnx
+    ort_input_name: obs
+
+
+
+    obs_fields:
+      - base_lin_vel
+      - base_ang_vel
+      - gravity
+      - pose_xy
+      - zeros2
+      - q14
+      - dq14
+      - last_actions14
+      - time_remaining
+
+    # padding
+    obs_auto_pad: true          
+    obs_allow_truncate: false   
+    # obs_pad_to         
+    limits:
+      x_max_m: 0.5
+      y_max_m: 0.5
+
+    action_order_model:
+      - FL_HAA
+      - FR_HAA
+      - HL_HAA
+      - HR_HAA
+      - FL_HFE
+      - FR_HFE
+      - HL_HFE
+      - HR_HFE
+      - FL_KFE
+      - FR_KFE
+      - HL_KFE
+      - HR_KFE
+      - HL_AFE
+      - HR_AFE
+
+    action_mode: delta
+    base_for_delta: model_q0
+
+    model_q0:
+      FL_HAA: 0.0
+      FR_HAA: 0.0
+      HL_HAA: 0.0
+      HR_HAA: 0.0
+      FL_HFE: 0.4102
+      FR_HFE: 0.4102
+      HL_HFE: -0.6981
+      HR_HFE: -0.6981
+      FL_KFE: -1.2716
+      FR_KFE: -1.2716
+      HL_KFE: 1.676
+      HR_KFE: 1.676
+      HL_AFE: -1.7219
+      HR_AFE: -1.7219
+
+  # ============================================
+  # Rough fixed slope
+  # ============================================
+  rough_fixed_slope_v1:
+    model_format: onnx
+    model_path: policies/rough_fixed_slope.onnx
+    ort_input_name: obs
+
+    # (padding with zeros)
+    obs_fields:
+      - base_lin_vel
+      - base_ang_vel
+      - gravity
+      - pose_xy
+      - zeros2
+      - q14
+      - dq14
+      - last_actions14
+      - time_remaining
+
+    # padding
+    obs_pad_to: 243
+    obs_auto_pad: true
+    obs_allow_truncate: false
+
+    limits:
+      x_max_m: 0.5
+      y_max_m: 0.5
+
+    action_order_model:
+      - FL_HAA
+      - FR_HAA
+      - HL_HAA
+      - HR_HAA
+      - FL_HFE
+      - FR_HFE
+      - HL_HFE
+      - HR_HFE
+      - FL_KFE
+      - FR_KFE
+      - HL_KFE
+      - HR_KFE
+      - HL_AFE
+      - HR_AFE
+
+    action_mode: delta
+    base_for_delta: model_q0
+
+    model_q0:
+      FL_HAA: 0.0
+      FR_HAA: 0.0
+      HL_HAA: 0.0
+      HR_HAA: 0.0
+      FL_HFE: 0.4102
+      FR_HFE: 0.4102
+      HL_HFE: -0.6981
+      HR_HFE: -0.6981
+      FL_KFE: -1.2716
+      FR_KFE: -1.2716
+      HL_KFE: 1.676
+      HR_KFE: 1.676
+      HL_AFE: -1.7219
+      HR_AFE: -1.7219
+

@@ -1,0 +1,21 @@
+<launch>
+  <arg name="sensor_hostname" default="10.5.5.86" doc="Adresse IP ou hostname du LiDAR Ouster" />
+  <arg name="viz" default="true" doc="Activer l'affichage graphique RViz" />
+  
+  <arg name="usb_port" default="/dev/ttyACM0" doc="Port USB de la carte STM32" />
+  <arg name="baudrate" default="115200" doc="Baudrate pour la communication série" />
+
+  <include file="$(find ouster_ros)/launch/sensor.launch">
+    <arg name="sensor_hostname" value="$(arg sensor_hostname)" />
+    <arg name="viz" value="$(arg viz)" />
+  </include>
+
+  <node name="lidar_relay_node" pkg="topic_tools" type="relay" args="/ouster/points /lidar_relay" output="screen" />
+
+  <node name="elevation_mapper_node" pkg="mitacs" type="elevation_mapper.py" output="screen" />
+
+  <node pkg="rosserial_python" type="serial_node.py" name="rosserial_arduino" output="screen">
+    <param name="port" value="$(arg usb_port)"/>
+    <param name="baud" value="$(arg baudrate)"/>
+  </node>
+</launch>

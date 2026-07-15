@@ -1,0 +1,29 @@
+<launch>
+  <!-- ========================================== -->
+  <!-- 1. Launch Gazebo World (quadruped_gazebo) -->
+  <!-- ========================================== -->
+  <include file="$(find quadruped_gazebo)/launch/gazebo.launch" />
+
+  <!-- ========================================== -->
+  <!-- 2. Spawn Controllers (quadruped_gazebo)    -->
+  <!-- ========================================== -->
+  <include file="$(find quadruped_gazebo)/launch/spawn_control.launch" />
+
+  <!-- ========================================== -->
+  <!-- 3. Run Policy & Command Relay (quadruped_control) -->
+  <!-- ========================================== -->
+  <include file="$(find quadruped_control)/launch/bringup_rl.launch" />
+
+  <node name="odom_to_tf" pkg="mitacs" type="odom_to_tf.py" output="screen" />
+
+  <node pkg="elevation_mapping" type="elevation_mapping" name="elevation_mapping" output="screen">
+    <rosparam command="load" file="$(find mitacs)/config/elevation_mapping_ouster.yaml" />
+  </node>
+
+  <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
+    <rosparam command="load" file="$(find mitacs)/config/grid_map_visualization.yaml" />
+  </node>
+  <node name="rviz" pkg="rviz" type="rviz" output="screen" />
+  <node name="rl_grid_extractor" pkg="mitacs" type="rl_grid_extractor.py" output="screen" />
+
+</launch>
