@@ -25,5 +25,4 @@
   </node>
   <node name="rviz" pkg="rviz" type="rviz" output="screen" />
   <node name="rl_grid_extractor" pkg="mitacs" type="rl_grid_extractor.py" output="screen" />
-
 </launch>

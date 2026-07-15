@@ -33,4 +33,6 @@ if __name__ == "__main__":
     rospy.init_node("odom_to_tf_broadcaster")
     # On s'abonne au topic publié par le plugin Gazebo
     rospy.Subscriber("/odom", Odometry, handle_robot_pose)
+    rospy.loginfo("odom to tf init")
+
     rospy.spin()
