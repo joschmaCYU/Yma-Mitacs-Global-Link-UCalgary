@@ -1,0 +1,129 @@
+<!-- 
+Project Name : ContinuO - Quadruped Robot
+Description : This launch file is used to create the four quadruped leg nodes and other required nodes.
+Author : Florent Pralong
+Date of creation : 15/06/2026
+Version : 1.0
+-->
+
+<launch>
+    <!--Create the clock node with its parameters-->
+    <node pkg="f_quadruped_real"
+          type="quadruped_sync_clock_node.py"
+          name="quadruped_sync_clock"
+          output="screen">
+        <param name="rate" value="10.0"/>
+    </node>
+
+    <!--Create the imu node with its parameters-->
+    <node pkg="f_quadruped_real"
+          type="quadruped_imu_node.py"
+          name="quadruped_imu"
+          output="screen">
+    </node>
+
+    <!--Create the cmd node with its parameters-->
+    <node pkg="f_quadruped_real"
+          type="quadruped_cmd_node.py"
+          name="quadruped_cmd"
+          output="screen">
+    </node>
+
+    <!--Create the lidar node with its parameters-->
+    <node pkg="f_quadruped_real"
+          type="quadruped_lidar_node.py"
+          name="quadruped_lidar"
+          output="screen">
+    </node>
+
+    <!--Create the front right leg node with its parameters-->
+    <node pkg="f_quadruped_real"
+          type="quadruped_leg_real_node.py"
+          name="quadruped_front_right_real"
+          output="screen">
+        <param name="active_leg" value="front_right"/>
+        <param name="command_speed" value="1400.0"/>
+        <param name="command_accel" value="1500"/>
+        <param name="command_decel" value="1500"/>
+
+        <param name="dry_run" value="true"/>
+
+        <param name="inv_motor_command" value="false"/>  
+        <param name="inter_motor_delay" value="0.02"/>  
+        <param name="default_max_amplitude_deg" value="15.0"/>
+        <rosparam param="max_amplitude_deg">
+            "1": 40.0
+            "3": 100.0
+            "5": 180.0
+        </rosparam>
+    </node>
+
+    <!--Create the front left leg node with its parameters-->
+    <node pkg="f_quadruped_real"
+          type="quadruped_leg_real_node.py"
+          name="quadruped_front_left_real"
+          output="screen">
+        <param name="active_leg" value="front_left"/>
+        <param name="command_speed" value="1400.0"/>
+        <param name="command_accel" value="1500"/>
+        <param name="command_decel" value="1500"/>
+
+        <param name="dry_run" value="true"/>
+
+        <param name="inv_motor_command" value="true"/>  
+        <param name="inter_motor_delay" value="0.02"/> 
+        <param name="default_max_amplitude_deg" value="10.0"/>
+        <rosparam param="max_amplitude_deg">
+            "2": 40.0
+            "4": 100.0
+            "6": 180.0
+        </rosparam>   
+    </node>
+
+    <!--Create the hind right leg node with its parameters-->
+    <node pkg="f_quadruped_real"
+          type="quadruped_leg_real_node.py"
+          name="quadruped_hind_right_real"
+          output="screen">
+        <param name="active_leg" value="hind_right"/>
+        <param name="command_speed" value="1400.0"/>
+        <param name="command_accel" value="1500"/>
+        <param name="command_decel" value="1500"/>
+
+        <param name="dry_run" value="true"/>  
+
+        <param name="inv_motor_command" value="false"/>  
+        <param name="inter_motor_delay" value="0.02"/>    
+        <param name="default_max_amplitude_deg" value="10.0"/>
+        <rosparam param="max_amplitude_deg">
+            "11": 40.0
+            "13": 80.0
+            "15": 150.0
+            "17": 180.0
+        </rosparam> 
+    </node>
+
+    <!--Create the hind left leg node with its parameters-->
+    <node pkg="f_quadruped_real"
+          type="quadruped_leg_real_node.py"
+          name="quadruped_hind_left_real"
+          output="screen">
+        <param name="active_leg" value="hind_left"/>
+        <param name="command_speed" value="1400.0"/>
+        <param name="command_accel" value="1500"/>
+        <param name="command_decel" value="1500"/>
+
+        <param name="dry_run" value="true"/>  
+
+        <param name="inv_motor_command" value="true"/>  
+        <param name="inter_motor_delay" value="0.02"/>    
+        <param name="default_max_amplitude_deg" value="10.0"/>
+        <rosparam param="max_amplitude_deg">
+            "10": 40.0
+            "12": 80.0
+            "14": 150.0
+            "16": 180.0
+        </rosparam> 
+    </node>
+
+</launch>

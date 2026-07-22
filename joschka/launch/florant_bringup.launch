@@ -1,0 +1,22 @@
+
+<launch>
+  <arg name="fake" default="false" doc="Set to true to run with fake observation data instead of real robot
+drivers" />
+
+  <!-- START Visu node -->
+  <node pkg="f_quadruped_monitoring" type="commands_visu_node.py" name="visu_node" output="screen" />
+
+  <!-- START Switch policy node -->
+  <!--<node pkg="f_quadruped_control" type="quadruped_switch_policy_node.py" name="switchcp" output="screen" />-->
+
+  <!-- START control node -->
+  <node pkg="f_quadruped_control" type="policy_node.py" name="control_node" output="screen" />
+
+  <!-- START Fake Observation Node (if fake is true) -->
+  <node pkg="f_quadruped_control" type="quadruped_fake_obs_datas.py" name="quadruped_fake_obs_datas_node" output="screen">
+    <param name="publish_hz" value="10.0" />
+    <param name="loop" value="true" />
+  </node>
+
+</launch>
+

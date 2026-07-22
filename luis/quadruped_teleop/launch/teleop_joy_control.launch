@@ -1,0 +1,25 @@
+<launch>
+  <!-- Joystick node -->
+  <node pkg="joy" type="joy_node" name="joy" output="screen">
+    <param name="dev" value="/dev/input/js0"/>
+    <param name="deadzone" value="0.05"/>
+    <param name="autorepeat_rate" value="20"/>
+  </node>
+
+  <!-- Teleop node publishing to /cmd_vel -->
+  <node pkg="quadruped_teleop" type="teleop_joy_control.py" name="teleop_joy_control" output="screen">
+  <!-- Recommended mapping for DualSense -->
+    <param name="axis_vx" value="1"/>     <!-- LY -->
+    <param name="axis_vy" value="0"/>     <!-- LX -->
+    <param name="axis_yaw" value="3"/>    <!-- RX -->
+
+  <!-- Scaling factors (adjust for more/less speed) -->
+    <param name="scale_vx" value="-0.30"/>  <!-- up=+vx -->
+    <param name="scale_vy" value="0.20"/>
+    <param name="scale_yaw" value="0.80"/>
+
+  <!-- Deadzone and enable button -->
+    <param name="deadzone" value="0.05"/>
+    <param name="enable_button" value="-1"/> <!-- -1 = always active -->
+  </node>
+</launch>

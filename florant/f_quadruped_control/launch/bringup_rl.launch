@@ -1,0 +1,64 @@
+<launch>
+  <!-- ===================== -->
+  <!-- Simulation Clock -->
+  <!-- ===================== -->
+  <param name="/use_sim_time" value="true"/>
+
+  <!-- ========================================================= -->
+  <!-- Load Policy Profiles -->
+  <!-- ========================================================= -->
+  <rosparam ns="policy_node_torch" file="$(find f_quadruped_control)/config/policies.yaml" command="load"/>
+
+  <!-- ================================================================== -->
+  <!--  Policy Node (ONNX/TorchScript)                                   -->
+  <!-- ================================================================== -->
+  <node pkg="f_quadruped_control" type="policy_node.py" name="policy_node_torch" output="screen">
+    <!-- Select profile declared in policies.yaml (now under node namespace) -->
+    <param name="policy_profile" value="policy_onnx_flat_v1"/>
+
+    <!-- Node runtime parameters -->
+    <param name="debug_obs" value="true"/>
+
+    <!-- Frequency / output topic -->
+    <param name="rate"         value="50.0"/>
+    <param name="output_topic" value="/joint_targets_rl"/>
+
+    <!-- Policy filters/outputs -->
+    <param name="action_gain"  value="1.0"/>
+    <param name="clamp_deg"    value="35.0"/>
+    <param name="smooth_alpha" value="0.25"/>
+
+    <!-- Autonomous mode (no joystick required) -->
+    <param name="autonomous_mode" value="true"/>
+    <param name="auto_cmd_type" value="constant"/>  <!-- 'constant' | 'sine' -->
+    <param name="auto_x_m" value="0.2"/>
+    <param name="auto_y_m" value="0.0"/>
+    <param name="auto_wz"  value="0.0"/>
+    <param name="auto_cycle_s" value="6.0"/>
+
+    <!-- Deadman / scaling by command magnitude -->
+    <param name="cmd_vel_threshold" value="0.01"/>
+    <param name="scale_by_cmd" value="true"/>
+
+    <!-- Observation/IMU/base config -->
+    <param name="obs_center_q0" value="true"/>
+    <param name="flip_gravity_sign" value="false"/>
+    <param name="imu_use_R_transpose" value="true"/>
+
+    <!-- Base velocity source (simulation) -->
+    <param name="use_odom" value="false"/>
+    <param name="use_gazebo_link_states" value="true"/>
+    <param name="base_link_name" value="base"/>
+
+    <!-- NOTE: The profile (policies.yaml) defines:
+         model_format, model_path, ort_input_name, obs_fields,
+         limits(x_max_m,y_max_m), action_order_model, action_mode,
+         base_for_delta, model_q0 -->
+  </node>
+
+  <!-- =============================================================== -->
+  <!-- Relay policy→controllers: /joint_targets_rl -> /.../command     -->
+  <!-- =============================================================== -->
+  <node pkg="f_quadruped_control" type="policy_to_controllers.py" name="policy_to_controllers" output="screen"/>
+</launch>
+

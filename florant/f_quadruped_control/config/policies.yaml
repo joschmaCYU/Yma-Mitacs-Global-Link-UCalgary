@@ -1,0 +1,143 @@
+
+# Project Name : ContinuO - Quadruped Robot
+# Description : This configuration file provides policy configurations.
+# Author : Florent Pralong
+# Date of creation : 02/07/2026
+# Version : 1.0
+
+
+policies:
+
+  # Climb policy configuration
+  climb:
+    model_path: policies/climb_final-climb.onnx
+    model_format: onnx
+    obs_terms:
+      - base_lin_vel
+      - base_ang_vel
+      - projected_gravity
+      - pose_commands
+      - joint_pos
+      - joint_vel
+      - actions
+      - height_scan
+      - time_remaining_s
+    obs_dim: 243
+    action_mode: delta
+    action_scale: 0.5
+    height_scan_dim: 187
+
+  # Crouch policy configuration
+  crouch:
+    model_path: policies/crouch-heading-corrected-2.onnx
+    model_format: onnx
+    obs_terms:
+      - base_lin_vel
+      - base_ang_vel
+      - projected_gravity
+      - pose_commands
+      - joint_pos
+      - joint_vel
+      - actions
+      - height_scan
+      - time_remaining_s
+      - ceiling_height_scan
+    obs_dim: 244
+    action_mode: delta
+    action_scale: 0.5
+    height_scan_dim: 1
+    ceiling_height_scan_dim: 187
+
+  # Drop policy configuration
+  drop:
+    model_path: policies/drop_final-drop.onnx
+    model_format: onnx
+    obs_terms:
+      - base_lin_vel
+      - base_ang_vel
+      - projected_gravity
+      - pose_commands
+      - joint_pos
+      - joint_vel
+      - actions
+      - height_scan
+      - time_remaining_s
+    obs_dim: 243
+    action_mode: delta
+    action_scale: 0.5
+    height_scan_dim: 187
+
+  # Flat policy configuration
+  flat:
+    model_path: policies/flat_pushing_pt2.onnx
+    model_format: onnx
+    obs_terms:
+      - base_lin_vel
+      - base_ang_vel
+      - projected_gravity
+      - pose_commands
+      - joint_pos
+      - joint_vel
+      - actions
+      - time_remaining_s
+    obs_dim: 56
+    action_mode: delta
+    action_scale: 0.5
+
+  # Gap policy configuration
+  gap:
+    model_path: policies/gap_final-gap-2.onnx
+    model_format: onnx
+    obs_terms:
+      - base_lin_vel
+      - base_ang_vel
+      - projected_gravity
+      - pose_commands
+      - joint_pos
+      - joint_vel
+      - actions
+      - height_scan
+      - time_remaining_s
+    obs_dim: 397
+    action_mode: delta
+    action_scale: 0.5
+    height_scan_dim: 341
+
+  # Narrow policy configuration
+  narrow:
+    model_path: policies/narrow-full-success.onnx
+    model_format: onnx
+    obs_terms:
+      - base_lin_vel
+      - base_ang_vel
+      - projected_gravity
+      - pose_commands
+      - joint_pos
+      - joint_vel
+      - actions
+      - height_scan
+      - time_remaining_s
+    obs_dim: 243
+    action_mode: delta
+    action_scale: 0.5
+    height_scan_dim: 187
+
+  # Rough policy configuration
+  rough:
+    model_path: policies/rough_fixed-slope-2.onnx
+    model_format: onnx
+    obs_terms:
+      - base_lin_vel
+      - base_ang_vel
+      - projected_gravity
+      - pose_commands
+      - joint_pos
+      - joint_vel
+      - actions
+      - height_scan
+      - time_remaining_s
+    obs_dim: 243
+    action_mode: delta
+    action_scale: 0.5
+    height_scan_dim: 187
+
