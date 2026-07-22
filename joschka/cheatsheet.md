@@ -24,6 +24,9 @@ docker cp ros_ouster:./real_lidar_50hz.csv ~
 # Find
 find . -iname "*name*"
 
+# Plot
+rosrun plotjuggler plotjuggler
+
 # Arduino
 ## To generate the msg libraries
 rosrun rosserial_arduino make_libraries.py /tmp

@@ -53,8 +53,8 @@ include_directories(
 ##  NOTE: Keep ONLY the ones that EXIST in scripts/
 ## ------------------------------------------------------------------
 catkin_install_python(PROGRAMS
-  scripts/policy_node_torch.py
-  scripts/joint_commander.py
+  scripts/policy_node_onnx.py
+  scripts/policy_node_old.py
   # Uncomment if you have them in this folder:
   # scripts/gait_manager.py
   # scripts/ik_node.py

@@ -13,6 +13,8 @@
   <!-- 3. Run Policy & Command Relay (quadruped_control) -->
   <!-- ========================================== -->
   <include file="$(find quadruped_control)/launch/bringup_rl.launch" />
+  <!-- Only when removing rl-->
+  <!--<node pkg="quadruped_control" type="policy_to_controllers.py" name="policy_to_controllers" output="screen"/>-->
 
   <node name="odom_to_tf" pkg="mitacs" type="odom_to_tf.py" output="screen" />
 
@@ -23,6 +25,6 @@
   <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
     <rosparam command="load" file="$(find mitacs)/config/grid_map_visualization.yaml" />
   </node>
-  <node name="rviz" pkg="rviz" type="rviz" output="screen" />
+  <!--<node name="rviz" pkg="rviz" type="rviz" output="screen" />-->
   <node name="rl_grid_extractor" pkg="mitacs" type="rl_grid_extractor.py" output="screen" />
 </launch>

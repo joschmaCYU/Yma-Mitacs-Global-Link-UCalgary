@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y \
     ros-noetic-joy \
     ros-noetic-joint-state-controller \
     ros-noetic-effort-controllers \
+    ros-noetic-plotjuggler-ros \
+    python3-tk \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. Installation des librairies Python requises

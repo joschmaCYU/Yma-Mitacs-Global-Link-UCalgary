@@ -20,10 +20,10 @@
         args="-param robot_description
               -urdf
               -model quadruped
-              -x 0.0 -y 0.0 -z 0.52      
+              -x 0.0 -y 0.0 -z 0.75      
               -R 0.0 -P 0.0 -Y 0.0
               -J FL_HAA 0.0  -J FR_HAA 0.0  -J HL_HAA 0.0  -J HR_HAA 0.0
-              -J FL_HFE 0.30 -J FR_HFE 0.30 -J HL_HFE -0.05 -J HR_HFE -0.05
-              -J FL_KFE -0.60 -J FR_KFE -0.60 -J HL_KFE 0.45  -J HR_KFE 0.45
-              -J HL_AFE -0.40 -J HR_AFE -0.40"/>
+              -J FL_HFE 0.4102 -J FR_HFE 0.4102 -J HL_HFE -0.6981 -J HR_HFE -0.6981
+              -J FL_KFE -1.2716 -J FR_KFE -1.2716 -J HL_KFE 1.676 -J HR_KFE 1.676
+              -J HL_AFE -1.7219 -J HR_AFE -1.7219"/>
 </launch>

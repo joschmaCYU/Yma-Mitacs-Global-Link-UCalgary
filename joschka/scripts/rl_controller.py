@@ -16,7 +16,7 @@ class RLController:
         # Remplace par le chemin absolu vers ton fichier s'il n'est pas dans le dossier courant
         onnx_path = rospy.get_param(
             "~onnx_model_path",
-            "/root/catkin_ws/src/mitacs/Policy/Exported_policies/rough_fixed-slope-2.onnx",
+            "/root/catkin_ws/src/mitacs/joschka/Policy/Exported_policies/rough_fixed-slope-2.onnx",
         )
         self.ort_session = ort.InferenceSession(onnx_path)
 
@@ -41,8 +41,6 @@ class RLController:
             "HL_AFE",
             "HR_AFE",
         ]
-
-
 
         # Scales (Facteurs de normalisation issus de la configuration d'entraînement)
         self.lin_vel_scale = 2.0

@@ -145,6 +145,7 @@ policy_profiles:
       - q14
       - dq14
       - last_actions14
+      - height_scan
       - time_remaining
 
     # padding

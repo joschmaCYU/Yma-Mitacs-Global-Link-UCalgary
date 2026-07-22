@@ -120,10 +120,10 @@ Launch with `elevation_mapping.launch`
 
 # Day 11 (14/07)
 For now I spawn the robot urdf and I publish my grid map on `/elevation_mapping/elevation_map`. I can now see elevation points on rviz. I publish the grid on `/lidar`.
-1) I had to adjust the p (50) and d (1) gains.
-2) The order for the rl is `['FL_HAA', 'FR_HAA', 'HL_HAA', 'HR_HAA', 'FL_HFE', 'FR_HFE', 'HL_HFE', 'HR_HFE', 'FL_KFE', 'FR_KFE', 'HL_KFE', 'HR_KFE', 'HL_AFE', 'HR_AFE']`
+1) I had to adjust the pid gains.
+2) The order for the rl is `["FL_HAA", "FR_HAA", "HL_HAA", "HR_HAA", "FL_HFE", "FR_HFE", "HL_HFE", "HR_HFE", "FL_KFE", "FR_KFE", "HL_KFE", "HR_KFE", "HL_AFE", "HR_AFE"]`
 3) The joint position actions scale is 0.5
-4) The default joint angle are : HAA (0°), HFE (front = -90°, back = 90°), KFE (front = 180°, back = -180°), AFE / EXTRA (180°)
+4) The default angles are: "FL_HAA": 0.0, "FR_HAA": 0.0, "HL_HAA": 0.0, "HR_HAA": 0.0, "FL_HFE": 0.4102, "FR_HFE": 0.4102, "HL_HFE": -0.6981, "HR_HFE": -0.6981, "FL_KFE": -1.2716, "FR_KFE": -1.2716, "HL_KFE": 1.676, "HR_KFE": 1.676, "HL_AFE": -1.7219, "HR_AFE": -1.7219
 
 Test with just the flat policy.
 
@@ -142,3 +142,30 @@ The pipe line for the simulated lidar is :
 4) Creation of the 2.5d grid which is published on /elevation_mapping/elevation_map
 
 If you want the points to go farther you have to modify `length_in_x` in elevation_mapping.yaml
+
+# Day 13 (16/07)
+Luis configured the pid for just walking and for the flat policy.
+Tuning for rough policy.
+
+# Day 14 (17/07)
+I think I have a good pid. I created a simple script to move each part individualy `manual_joint_tuner.py`.
+I have one leg that is up I don't know why.
+
+I have to tune tow legs front and back because robot is mirror for this I can make the robot go up and down and then for haa make one leg move at a time on the side but other legs a bit out so that the robot doesn't fall.
+
+# Day 15 (20/07)
+I made `stance_tuner.py` I could tune my pid for the legs `p: 200.0  i: 0.0  d: 4.0` for the shoulders (haa) : `p: 250.0  i: 0.0  d: 1.0`, for afe `p: 150.0  i: 0.0  d: 1.0`. 
+See *HL_HFE_KFE.png*, *FL_HFE_KFE.png*, *HL_AFE.png* and *HL_HAA.png*.
+But the robot still falls when I tell him to go forward. I use the same urdf that was used for the rl.
+**I undestood I gave the wrong start positions.**
+
+# Day 16 (21/07)
+Still not walking strait.
+I visualised the output of *joint_positions_rough_with_flat_terrain.csv* with `replay_policy.py` to see how the robot should walk.
+I also visualised the output of the flat and the rough policy with the same data `joint_positions.csv` see *compareson_flat_rough_same_data* folder.
+**I put the same data but I don't have the same output for the same policy**
+
+# Day 17 (22/07)
+I am trying to pin down what is the problem I think that I don't have the same policy as in isaac sim because why else would I have different output with same input.
+I have the same policy as in isaac sim (2ae2ad6d363eb7d1a739e867d2a003f9 2025-09-15_13-06-21_fixed-slope-2.onnx) md5 checksum
+**I had the joint in the wrong order** now it's working. Like I have the same output with the same input.
