@@ -8,8 +8,8 @@ import rospkg
 from sensor_msgs.msg import Imu, JointState, LaserScan
 from std_msgs.msg import Float32MultiArray
 
-class QuadrupedFakeObsDatasNode:
 
+class QuadrupedFakeObsDatasNode:
     def __init__(self):
         rospy.init_node("quadruped_fake_obs_datas_node")
 
@@ -21,22 +21,37 @@ class QuadrupedFakeObsDatasNode:
         package_path = rospack.get_path("f_quadruped_control")
 
         self.csv_path = rospy.get_param(
-            "~csv_path", "/root/catkin_ws/src/mitacs/joschka/data/joint_positions_flat.csv"
+            "~csv_path",
+            "/root/catkin_ws/src/mitacs/joschka/data/joint_positions_flat.csv",
         )
 
         self.pub_imu = rospy.Publisher("/imu", Imu, queue_size=10)
         self.pub_cmd = rospy.Publisher("/cmd", Float32MultiArray, queue_size=10)
-        self.pub_joint_states = rospy.Publisher("/joint_states", JointState, queue_size=10)
+        self.pub_joint_states = rospy.Publisher(
+            "/joint_states", JointState, queue_size=10
+        )
         self.pub_lidar = rospy.Publisher("/lidar", LaserScan, queue_size=10)
 
         # --- NOUVEAU : PUBLISHER DES CIBLES CSV POUR LE REPLAY ---
-        self.pub_csv_targets = rospy.Publisher("/joint_targets_csv", JointState, queue_size=10)
+        self.pub_csv_targets = rospy.Publisher(
+            "/joint_targets_csv", JointState, queue_size=10
+        )
 
         self.joint_names = [
-            "FL_HAA", "FR_HAA", "HL_HAA", "HR_HAA",
-            "FL_HFE", "FR_HFE", "HL_HFE", "HR_HFE",
-            "FL_KFE", "FR_KFE", "HL_KFE", "HR_KFE",
-            "HL_AFE", "HR_AFE"
+            "FL_HAA",
+            "FR_HAA",
+            "HL_HAA",
+            "HR_HAA",
+            "FL_HFE",
+            "FR_HFE",
+            "HL_HFE",
+            "HR_HFE",
+            "FL_KFE",
+            "FR_KFE",
+            "HL_KFE",
+            "HR_KFE",
+            "HL_AFE",
+            "HR_AFE",
         ]
 
         self.data = self.load_csv()
@@ -51,7 +66,9 @@ class QuadrupedFakeObsDatasNode:
             rospy.logerr("Missing column '%s' in CSV at line %d", key, line_index + 2)
             raise
         except ValueError:
-            rospy.logerr("Invalid float for column '%s' in CSV at line %d", key, line_index + 2)
+            rospy.logerr(
+                "Invalid float for column '%s' in CSV at line %d", key, line_index + 2
+            )
             raise
 
     # Sécurité au cas où la colonne target_ n'existe pas
@@ -68,28 +85,55 @@ class QuadrupedFakeObsDatasNode:
 
             for line_index, row in enumerate(reader):
                 imu_data = {
-                    "base_lin_vel": [self.get_float(row, "obs_0", line_index), self.get_float(row, "obs_1", line_index), self.get_float(row, "obs_2", line_index)],
-                    "base_ang_vel": [self.get_float(row, "obs_3", line_index), self.get_float(row, "obs_4", line_index), self.get_float(row, "obs_5", line_index)],
-                    "projected_gravity": [self.get_float(row, "obs_6", line_index), self.get_float(row, "obs_7", line_index), self.get_float(row, "obs_8", line_index)],
+                    "base_lin_vel": [
+                        self.get_float(row, "obs_0", line_index),
+                        self.get_float(row, "obs_1", line_index),
+                        self.get_float(row, "obs_2", line_index),
+                    ],
+                    "base_ang_vel": [
+                        self.get_float(row, "obs_3", line_index),
+                        self.get_float(row, "obs_4", line_index),
+                        self.get_float(row, "obs_5", line_index),
+                    ],
+                    "projected_gravity": [
+                        self.get_float(row, "obs_6", line_index),
+                        self.get_float(row, "obs_7", line_index),
+                        self.get_float(row, "obs_8", line_index),
+                    ],
                 }
 
-                cmd_data = [self.get_float(row, "obs_9", line_index), self.get_float(row, "obs_10", line_index), self.get_float(row, "obs_11", line_index), self.get_float(row, "obs_12", line_index)]
+                cmd_data = [
+                    self.get_float(row, "obs_9", line_index),
+                    self.get_float(row, "obs_10", line_index),
+                    self.get_float(row, "obs_11", line_index),
+                    self.get_float(row, "obs_12", line_index),
+                ]
 
-                joint_pos = [self.get_float(row, f"obs_{i}", line_index) for i in range(13, 27)]
-                joint_vel = [self.get_float(row, f"obs_{i}", line_index) for i in range(27, 41)]
-                lidar_data = [self.get_float(row, f"obs_{i}", line_index) for i in range(41, 55)]
+                joint_pos = [
+                    self.get_float(row, f"obs_{i}", line_index) for i in range(13, 27)
+                ]
+                joint_vel = [
+                    self.get_float(row, f"obs_{i}", line_index) for i in range(27, 41)
+                ]
+                lidar_data = [
+                    self.get_float(row, f"obs_{i}", line_index) for i in range(41, 55)
+                ]
 
                 # --- NOUVEAU : EXTRACTION DES CIBLES EXACTES ---
-                csv_targets = [self.get_target_safe(row, "target_" + j) for j in self.joint_names]
+                csv_targets = [
+                    self.get_target_safe(row, "target_" + j) for j in self.joint_names
+                ]
 
-                rows.append({
-                    "imu": imu_data,
-                    "cmd": cmd_data,
-                    "joint_pos": joint_pos,
-                    "joint_vel": joint_vel,
-                    "lidar": lidar_data,
-                    "csv_targets": csv_targets,
-                })
+                rows.append(
+                    {
+                        "imu": imu_data,
+                        "cmd": cmd_data,
+                        "joint_pos": joint_pos,
+                        "joint_vel": joint_vel,
+                        "lidar": lidar_data,
+                        "csv_targets": csv_targets,
+                    }
+                )
 
         if not rows:
             raise RuntimeError("CSV file is empty")
@@ -141,7 +185,9 @@ class QuadrupedFakeObsDatasNode:
 
         self.pub_imu.publish(self.build_imu_msg(row["imu"], stamp))
         self.pub_cmd.publish(self.build_cmd_msg(row["cmd"]))
-        self.pub_joint_states.publish(self.build_joint_state_msg(row["joint_pos"], row["joint_vel"], stamp))
+        self.pub_joint_states.publish(
+            self.build_joint_state_msg(row["joint_pos"], row["joint_vel"], stamp)
+        )
         self.pub_lidar.publish(self.build_lidar_msg(row["lidar"], stamp))
 
         # --- NOUVEAU : PUBLICATION DES CIBLES ---
@@ -161,6 +207,7 @@ class QuadrupedFakeObsDatasNode:
                 rate.sleep()
             if not self.loop:
                 break
+
 
 if __name__ == "__main__":
     try:

@@ -13,7 +13,7 @@
   <!-- 3. Run Policy & Command Relay (quadruped_control) -->
   <!-- ========================================== -->
   <include file="$(find quadruped_control)/launch/bringup_rl.launch" />
-  <!-- Only when removing rl-->
+  <!-- Only when removing bringup_rl-->
   <!--<node pkg="quadruped_control" type="policy_to_controllers.py" name="policy_to_controllers" output="screen"/>-->
 
   <node name="odom_to_tf" pkg="mitacs" type="odom_to_tf.py" output="screen" />

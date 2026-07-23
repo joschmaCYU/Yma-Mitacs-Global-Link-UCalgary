@@ -7,9 +7,11 @@ import onnxruntime as ort
 
 # --- 1. CONFIGURATION ---
 script_dir = os.path.dirname(os.path.abspath(__file__))
-CSV_FILE = os.path.join(script_dir, "../data/joint_positions_flat.csv")
+CSV_FILE = os.path.join(
+    script_dir, "../../data/joint_positions_rough_with_flat_terrain.csv"
+)
 ONNX_MODEL = os.path.join(
-    script_dir, "../Policy/Exported_policies/flat_pushing_pt2.onnx"
+    script_dir, "../../Policy/Exported_policies/rough_fixed-slope-2.onnx"
 )
 
 ACTION_SCALE = 0.5
@@ -17,7 +19,7 @@ ACTION_SCALE = 0.5
 # === PARAMÈTRE LIDAR ===
 # True = Essaie de lire les 187 points du lidar dans le CSV (obs_55 à obs_241)
 # False = Force le lidar à 0 (terrain plat)
-USE_CSV_LIDAR = False
+USE_CSV_LIDAR = True
 # =========================
 
 JOINT_ORDER = [

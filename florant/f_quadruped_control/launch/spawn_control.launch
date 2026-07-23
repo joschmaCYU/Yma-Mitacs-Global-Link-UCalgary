@@ -1,0 +1,23 @@
+<launch>
+  <!-- Load parameters from YAML file -->
+  <rosparam file="$(find f_quadruped_control)/config/control.yaml" command="load"/>
+
+  <!-- Controller spawner (includes joint_state_controller at startup) -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen"
+        args="joint_state_controller
+              FL_HAA_position_controller
+              FL_HFE_position_controller
+              FL_KFE_position_controller
+              FR_HAA_position_controller
+              FR_HFE_position_controller
+              FR_KFE_position_controller
+              HL_HAA_position_controller
+              HL_HFE_position_controller
+              HL_KFE_position_controller
+              HL_AFE_position_controller
+              HR_HAA_position_controller
+              HR_HFE_position_controller
+              HR_KFE_position_controller
+              HR_AFE_position_controller" />
+</launch>

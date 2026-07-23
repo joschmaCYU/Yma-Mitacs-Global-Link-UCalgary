@@ -16,21 +16,6 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_python_setup()
 
 ## ------------------------------------------------------------------
-## Messages (msg) and services (srv) of this package
-## ------------------------------------------------------------------
-##add_message_files(
- ## FILES
-  ##HighLevelCmd.msg
-##)
-
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-#   geometry_msgs
-#   sensor_msgs
-# )
-
-## ------------------------------------------------------------------
 ## Package export
 ## ------------------------------------------------------------------
 catkin_package(
@@ -52,14 +37,9 @@ include_directories(
 ## Python scripts installation
 ##  NOTE: Keep ONLY the ones that EXIST in scripts/
 ## ------------------------------------------------------------------
-# catkin_install_python(PROGRAMS
-#   #scripts/policy_node_torch.py
-#   #scripts/joint_commander.py
-#   # Uncomment if you have them in this folder:
-#   # scripts/gait_manager.py
-#   # scripts/ik_node.py
-#   # scripts/vel_cmd_listener.py
-#   # scripts/auto_walk_4legs.py
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+catkin_install_python(PROGRAMS
+  scripts/policy_node.py
+  scripts/policy_to_controllers.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 

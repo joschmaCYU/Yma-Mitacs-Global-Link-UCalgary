@@ -60,40 +60,37 @@ class ObservationManager:
             and self.latest_gz is not None
             and self.latest_imu is not None
         ):
-            try:
-                names = self.latest_gz.name
+            names = self.latest_gz.name
+            idx = next(
+                (
+                    i
+                    for i, n in enumerate(names)
+                    if n.endswith("::" + self.cfg.base_link_name)
+                    or n == self.cfg.base_link_name
+                ),
+                -1,
+            )
+            if idx < 0:
                 idx = next(
                     (
                         i
                         for i, n in enumerate(names)
-                        if n.endswith("::" + self.cfg.base_link_name)
-                        or n == self.cfg.base_link_name
+                        if n.endswith("::base") or n == "base"
                     ),
                     -1,
                 )
-                if idx < 0:
-                    idx = next(
-                        (
-                            i
-                            for i, n in enumerate(names)
-                            if n.endswith("::base") or n == "base"
-                        ),
-                        -1,
-                    )
 
-                if idx >= 0:
-                    vw = self.latest_gz.twist[idx].linear
-                    v_world = np.array([vw.x, vw.y, vw.z], dtype=np.float32)
-                    q = self.latest_imu.orientation
-                    R = quat_to_rot(q.w, q.x, q.y, q.z)
-                    v_body = (
-                        R.T.dot(v_world)
-                        if self.cfg.imu_use_R_transpose
-                        else R.dot(v_world)
-                    )
-                    return v_body.astype(np.float32)
-            except Exception:
-                pass
+            if idx >= 0:
+                vw = self.latest_gz.twist[idx].linear
+                v_world = np.array([vw.x, vw.y, vw.z], dtype=np.float32)
+                q = self.latest_imu.orientation
+                R = quat_to_rot(q.w, q.x, q.y, q.z)
+                v_body = (
+                    R.T.dot(v_world)
+                    if self.cfg.imu_use_R_transpose
+                    else R.dot(v_world)
+                )
+                return v_body.astype(np.float32)
         return np.zeros(3, dtype=np.float32)
 
     def get_base_ang_vel_body_or_zero(self):

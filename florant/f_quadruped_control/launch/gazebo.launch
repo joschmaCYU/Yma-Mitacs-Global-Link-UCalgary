@@ -1,0 +1,29 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="true" />
+    <arg name="use_sim_time" value="true" />
+    <arg name="gui" value="true" />
+    <arg name="headless" value="false" />
+    <arg name="debug" value="false" />
+  </include>
+
+
+  <param name="robot_description"
+    command="$(find xacro)/xacro '$(find f_quadruped_control)/urdf/ContinuO_lidar.xacro'" />
+
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    output="screen" />
+
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen"
+    args="-param robot_description
+              -urdf
+              -model quadruped
+              -x 0.0 -y 0.0 -z 0.55      
+              -R 0.0 -P 0.0 -Y 0.0
+              -J FL_HAA 0.0  -J FR_HAA 0.0  -J HL_HAA 0.0  -J HR_HAA 0.0
+              -J FL_HFE 0.4102 -J FR_HFE 0.4102 -J HL_HFE -0.6981 -J HR_HFE -0.6981
+              -J FL_KFE -1.2716 -J FR_KFE -1.2716 -J HL_KFE 1.676 -J HR_KFE 1.676
+              -J HL_AFE -1.7219 -J HR_AFE -1.7219" />
+</launch>

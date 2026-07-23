@@ -38,8 +38,6 @@ class PolicyRelay:
         # 3. On publie les cibles
         for joint, target_pos in model_q0.items():
             topic = f"/{joint}_position_controller/command"
-            target_pos *= action_scale
-            target_pos += model_q0[joint]
             self.pubs[topic].publish(Float64(target_pos))
         rospy.loginfo("Posture initiale model_q0 envoyée aux contrôleurs PID.")
 
@@ -60,10 +58,7 @@ class PolicyRelay:
                 self.pubs[topic] = pub
 
             pos = msg.position[idx] if idx < len(msg.position) else 0.0
-            pos *= action_scale
-            pos += model_q0[jname]
 
-            pos = msg.position[idx] if idx < len(msg.position) else 0.0
             pub.publish(pos)
 
 

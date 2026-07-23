@@ -168,4 +168,14 @@ I also visualised the output of the flat and the rough policy with the same data
 # Day 17 (22/07)
 I am trying to pin down what is the problem I think that I don't have the same policy as in isaac sim because why else would I have different output with same input.
 I have the same policy as in isaac sim (2ae2ad6d363eb7d1a739e867d2a003f9 2025-09-15_13-06-21_fixed-slope-2.onnx) md5 checksum
-**I had the joint in the wrong order** now it's working. Like I have the same output with the same input.
+**I had the joint in the wrong order** now it's working. Like I have the same output with the same input for *flat* and *rough*! It also works with lidar data set to 0. So did I show that the robot will work whithout a lidar on a flat terrain? See `same_input&output.png`.
+But it still doesn't work in gz with rough policy
+
+# Day 18 (23/07)
+I will use florent package.
+I broke in multiple piceses the urdf: 
+- `continuo.urdf.xacro`: the main file that includes the other files
+- `materials.xacro`: def the materials
+- `sensors.xacro`: link and joints for the lidar and imu
+- `transmissions.xacro`: for the transmissions that makes the link between the URDF joints and the PIDs
+- `legs.xacro`: All the legs stuff (inertial, visual, collision, link, joint)

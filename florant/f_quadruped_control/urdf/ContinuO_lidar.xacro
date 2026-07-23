@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ContinuO">
+
+  <!-- INCLUSIONS -->
+  <xacro:include filename="$(find f_quadruped_control)/urdf/materials.xacro"/>
+  <xacro:include filename="$(find f_quadruped_control)/urdf/sensors.xacro"/>
+  <xacro:include filename="$(find f_quadruped_control)/urdf/legs.xacro"/>
+  <xacro:include filename="$(find f_quadruped_control)/urdf/transmissions.xacro"/>
+  <xacro:include filename="$(find f_quadruped_control)/urdf/gazebo.xacro"/>
+
+  <!-- LIEN DE BASE -->
+  <link name="base_link" />
+
+  <joint name="dummy_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="base" />
+  </joint>
+
+  <link name="base">
+    <inertial>
+      <origin xyz="-0.02 0.000061 0.008445" rpy="0 0 0" />
+      <mass value="15.342" />
+      <inertia ixx="0.131477" ixy="-0.000035" ixz="0.000257"
+               iyy="0.328587" iyz="0.000031" izz="0.423802" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://f_quadruped_control/meshes/base.dae" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.5 0.25 0.2" />
+      </geometry>
+    </collision>
+  </link>
+
+</robot>

@@ -7,7 +7,9 @@ from matplotlib.animation import FuncAnimation
 # --- 1. CONFIGURATION ---
 script_dir = os.path.dirname(os.path.abspath(__file__))
 # Remplace par le nom exact de ton CSV si besoin
-CSV_FILE = os.path.join(script_dir, "../data/joint_positions_flat.csv")
+CSV_FILE = os.path.join(
+    script_dir, "../../data/joint_positions_rough_with_flat_terrain.csv"
+)
 
 # Architecture asymétrique de ContinuO
 LEGS = {

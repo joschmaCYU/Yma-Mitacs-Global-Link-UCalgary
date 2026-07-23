@@ -54,12 +54,6 @@ include_directories(
 ## ------------------------------------------------------------------
 catkin_install_python(PROGRAMS
   scripts/policy_node_onnx.py
-  scripts/policy_node_old.py
-  # Uncomment if you have them in this folder:
-  # scripts/gait_manager.py
-  # scripts/ik_node.py
-  # scripts/vel_cmd_listener.py
-  # scripts/auto_walk_4legs.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
